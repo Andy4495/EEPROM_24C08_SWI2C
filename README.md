@@ -1,7 +1,9 @@
 EEPROM_24C08_SWI2C Library
 ==========================
 
-This library interfaces with the 24C08 external I2C 8Kx1 EEPROM. It uses a software I2C implementation, and can therefore use any 2 I/O pins for interfacing with the EEPROM. It only provides simple 1-byte read and write commands.
+This library interfaces with the 24C08 external I2C 8Kx1 EEPROM. It uses a software I2C implementation, and can therefore use any 2 I/O pins for interfacing with the EEPROM. It only provides simple 1-byte read and write commands. It does not currently support sequential reads or writes.
+
+The library uses the "Polling on ACK" method described in section 5.1.3 of the [datasheet][1] to check if the chip has completed a previous write cycle, and therefore does not have any hardcoded delays.
 
 This library depends on a specific [SWI2C library][5].
 
@@ -21,7 +23,11 @@ Next, **instantiate** an EEPROM_24C08_SWI2C object:
 
     EEPROM_24C08_SWI2C eep(uint8_t sda_pin, uint8_t scl_pin, uint8_t device_address);
 
-`sda_pin` is the pin number for the SDA signal, `scl_pin` is the pin number for the SCL signal.
+If using a separate I/O pin to control WC (Write Control) on the EEPROM, then use the following constructor:
+
+    EEPROM_24C08_SWI2C eep(uint8_t sda_pin, uint8_t scl_pin, uint8_t device_address, uint8_t wc_pin);
+
+`sda_pin` is the pin number for the SDA signal, `scl_pin` is the pin number for the SCL signal, and `wc_pin` is the pin number for the WC signal (if used).
 
 `device_address` is the 7-bit I2C address for memory address 0x0000 of the EEPROM. This is typically 0x50 for 24C08, but may be 0x54 if the E2 signal is pulled high on the EEPROM chip.
 

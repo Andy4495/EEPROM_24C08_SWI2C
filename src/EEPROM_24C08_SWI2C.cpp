@@ -11,13 +11,22 @@
 */
 
 #include "EEPROM_24C08_SWI2C.h"
-EEPROM_24C08_SWI2C::EEPROM_24C08_SWI2C(uint8_t sda_pin, uint8_t scl_pin, uint8_t addr) {
-  // addr is optional, and defaults to BQ27441_I2C_ADDRESS
+EEPROM_24C08_SWI2C::EEPROM_24C08_SWI2C(uint8_t sda_pin, uint8_t scl_pin,
+                                       uint8_t addr) {
   eep0 = new SWI2C(sda_pin, scl_pin, addr);
   eep1 = new SWI2C(sda_pin, scl_pin, addr | 0x01);
   eep2 = new SWI2C(sda_pin, scl_pin, addr | 0x02);
   eep3 = new SWI2C(sda_pin, scl_pin, addr | 0x03);
+  _wc_pin = NO_PIN;
+}
 
+EEPROM_24C08_SWI2C::EEPROM_24C08_SWI2C(uint8_t sda_pin, uint8_t scl_pin,
+                                       uint8_t addr, uint8_t wc_pin) {
+  eep0 = new SWI2C(sda_pin, scl_pin, addr);
+  eep1 = new SWI2C(sda_pin, scl_pin, addr | 0x01);
+  eep2 = new SWI2C(sda_pin, scl_pin, addr | 0x02);
+  eep3 = new SWI2C(sda_pin, scl_pin, addr | 0x03);
+  _wc_pin = wc_pin;
 }
 
 EEPROM_24C08_SWI2C::~EEPROM_24C08_SWI2C() {
@@ -32,6 +41,10 @@ void EEPROM_24C08_SWI2C::begin() {
   eep1->begin();
   eep2->begin();
   eep3->begin();
+  if (_wc_pin != NO_PIN) {
+    digitalWrite(_wc_pin, HIGH);
+    pinMode(_wc_pin, OUTPUT);
+  }
 }
 
 void EEPROM_24C08_SWI2C::write(int address, byte data) {
@@ -56,6 +69,10 @@ void EEPROM_24C08_SWI2C::write(int address, byte data) {
       eep = eep3;
       break;
     }
+    // Enable the WC Write Control pin if needed:
+    if (_wc_pin != NO_PIN) {
+      digitalWrite(_wc_pin, LOW);
+    }
     // Poll for ACK before writing, to see if EEPROM has completed previous
     // write cycle. This allows us to avoid a hard-coded delay at end of write.
     // See section 5.1.3 of datasheet
@@ -73,6 +90,11 @@ void EEPROM_24C08_SWI2C::write(int address, byte data) {
     eep->writeByte(data);
     eep->checkAckBit();
     eep->stopBit();
+
+    // Disable WC Write Control pin if needed:
+    if (_wc_pin != NO_PIN) {
+      digitalWrite(_wc_pin, HIGH);
+    }
 
     // delay(6);  // delay not needed, since we are polling before writing
 }

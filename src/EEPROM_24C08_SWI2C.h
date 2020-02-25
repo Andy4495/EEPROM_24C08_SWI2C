@@ -20,6 +20,8 @@
 class EEPROM_24C08_SWI2C {
 public:
   EEPROM_24C08_SWI2C(uint8_t sda_pin, uint8_t scl_pin, uint8_t addr);
+  EEPROM_24C08_SWI2C(uint8_t sda_pin, uint8_t scl_pin, uint8_t addr,
+                     uint8_t wc_pin);
   ~EEPROM_24C08_SWI2C();
   void begin();
   void write(int address, byte data);
@@ -27,10 +29,12 @@ public:
   byte read(int address);
 
 private:
+  enum {NO_PIN = 255};
   SWI2C* eep0;
   SWI2C* eep1;
   SWI2C* eep2;
   SWI2C* eep3;
+  uint8_t _wc_pin; // Write control pin. 
 };
 
 #endif
