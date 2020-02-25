@@ -1,10 +1,9 @@
 /* -----------------------------------------------------------------
-   EEPROM_24C08_SWI2C
+   EEPROM_24C08_SWI2C Library
    https://github.com/Andy4495/EEPROM_24C08_SWI2C
 
    This library requires that the following library also be installed:
    https://github.com/Andy4495/SWI2C
-
 
    02/24/20 - A.T. - Original
 
