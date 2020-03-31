@@ -48,8 +48,6 @@ void EEPROM_24C08_SWI2C::begin() {
 }
 
 void EEPROM_24C08_SWI2C::write(int address, byte data) {
-  // Future enhancement: instead of delaying at end, check if device is ready
-  // before writing, and only delay if device not ready.
   int upper_bits;
   SWI2C* eep;
   uint8_t ack_bit;
