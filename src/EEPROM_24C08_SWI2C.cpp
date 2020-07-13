@@ -171,7 +171,7 @@ byte EEPROM_24C08_SWI2C::read(int address) {
     eep->writeAddress(1); // 1 == Read bit
     eep->checkAckBit();
     data = eep->read1Byte();
-    eep->checkAckBit(); // Master needs to send NACK when done reading data
+    eep->checkAckBit(); // Controller needs to send NACK when done reading data
     eep->stopBit();
 
     return data;
