@@ -55,9 +55,9 @@ References
 
 License
 -------
-The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE.txt`][101] in this repository.
+The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
 
 [1]:http://www.bgmicro.com/pdf/m24c08.pdf
 [5]:https://github.com/Andy4495/SWI2C
 [100]: https://choosealicense.com/licenses/mit/
-[101]: ./LICENSE.txt
+[101]: ./LICENSE
