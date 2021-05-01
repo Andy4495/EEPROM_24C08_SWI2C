@@ -1,5 +1,4 @@
-EEPROM_24C08_SWI2C Library
-==========================
+# EEPROM_24C08_SWI2C Library
 
 This library interfaces with the 24C08 external I2C 8Kx1 EEPROM. It uses a software I2C implementation, and can therefore use any 2 I/O pins for interfacing with the EEPROM. It only provides simple 1-byte read and write commands. It does not currently support sequential reads or writes.
 
@@ -7,25 +6,29 @@ The library uses the "Polling on ACK" method described in section 5.1.3 of the [
 
 This library depends on a specific [SWI2C library][5].
 
-Usage
------
+## Usage
 
 _Be sure to review the example sketch included with the library._
 
 First, **include** the library header file:
 
-    #include <SWI2C.h>
-    #include <EEPROM_24C08_SWI2C.h>
+```cpp
+#include <EEPROM_24C08_SWI2C.h>
+```
 
-Note that `<SWI2C.h>` is required, since this library depends on the [SWI2C][5] library.
+Note that this library depends on the [SWI2C][5] library.
 
 Next, **instantiate** an EEPROM_24C08_SWI2C object:
 
-    EEPROM_24C08_SWI2C eep(uint8_t sda_pin, uint8_t scl_pin, uint8_t device_address);
+```cpp
+EEPROM_24C08_SWI2C eep(uint8_t sda_pin, uint8_t scl_pin, uint8_t device_address);
+```
 
 If using a separate I/O pin to control WC (Write Control) on the EEPROM, then use the following constructor:
 
-    EEPROM_24C08_SWI2C eep(uint8_t sda_pin, uint8_t scl_pin, uint8_t device_address, uint8_t wc_pin);
+```cpp
+EEPROM_24C08_SWI2C eep(uint8_t sda_pin, uint8_t scl_pin, uint8_t device_address, uint8_t wc_pin);
+```
 
 `sda_pin` is the pin number for the SDA signal, `scl_pin` is the pin number for the SCL signal, and `wc_pin` is the pin number for the WC signal (if used).
 
@@ -33,31 +36,33 @@ If using a separate I/O pin to control WC (Write Control) on the EEPROM, then us
 
 Then **initialize** the object (typically within `setup()`):
 
-    eep.begin();
+```cpp
+eep.begin();
+```
 
 Remember to use pullup resistors on the SDA and SCL lines.
 
-#### Library Methods ####
+### Library Methods
 
-    void write(int address, byte data);
+```cpp
+void write(int address, byte data);
 
-    int writeAndVerify(int address, byte data); // Returns 0 if write successful, 1 if unsuccessful
+int writeAndVerify(int address, byte data); // Returns 0 if write successful, 1 if unsuccessful
 
-    byte read(int address);
+byte read(int address);
+```
 
-
-
-References
----------------------
+## References
 
 + [SWI2C library][5]
 + 24C08 [datasheet][1]
 
-License
--------
+## License
+
 The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
 
 [1]:http://www.bgmicro.com/pdf/m24c08.pdf
 [5]:https://github.com/Andy4495/SWI2C
 [100]: https://choosealicense.com/licenses/mit/
 [101]: ./LICENSE
+[200]: https://github.com/Andy4495/EEPROM_24C08_SWI2C
