@@ -1,5 +1,8 @@
 # EEPROM_24C08_SWI2C Library
 
+[![Arduino Compile Sketches](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/arduino-compile-sketches.yml/badge.svg)](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/arduino-compile-sketches.yml)
+[![Check Markdown Links](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/CheckMarkdownLinks.yml/badge.svg)](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/CheckMarkdownLinks.yml)
+
 This library interfaces with the 24C08 external I2C 8Kx1 EEPROM. It uses a software I2C implementation, and can therefore use any 2 I/O pins for interfacing with the EEPROM. It only provides simple 1-byte read and write commands. It does not currently support sequential reads or writes.
 
 The library uses the "Polling on ACK" method described in section 5.1.3 of the [datasheet][1] to check if the chip has completed a previous write cycle, and therefore does not have any hardcoded delays.
