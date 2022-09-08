@@ -68,6 +68,6 @@ The software and other files in this repository are released under what is commo
 [5]:https://github.com/Andy4495/SWI2C
 [100]: https://choosealicense.com/licenses/mit/
 [101]: ./LICENSE
-[200]: https://github.com/Andy4495/EEPROM_24C08_SWI2C
+[//]: # ([200]: https://github.com/Andy4495/EEPROM_24C08_SWI2C)
 
 [//]: # (Dead link from previous version of README: http://www.bgmicro.com/pdf/m24c08.pdf)
