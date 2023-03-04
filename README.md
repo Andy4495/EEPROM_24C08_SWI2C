@@ -64,6 +64,7 @@ byte read(int address);
 
 The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
 
+<!-- markdown-link-check-disable-next-line -->
 [1]: https://www.st.com/resource/en/datasheet/m24c08-r.pdf
 [5]:https://github.com/Andy4495/SWI2C
 [100]: https://choosealicense.com/licenses/mit/
