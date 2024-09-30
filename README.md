@@ -1,7 +1,7 @@
 # EEPROM_24C08_SWI2C Library
 
 [![Arduino Compile Sketches](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/arduino-compile-sketches.yml/badge.svg)](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/arduino-compile-sketches.yml)
-[![Check Markdown Links](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/CheckMarkdownLinks.yml/badge.svg)](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/CheckMarkdownLinks.yml)
+[![Check Markdown Links](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/check-links.yml/badge.svg)](https://github.com/Andy4495/EEPROM_24C08_SWI2C/actions/workflows/check-links.yml)
 
 This library interfaces with the 24C08 external I2C 8Kx1 EEPROM. It uses a software I2C implementation, and can therefore use any 2 I/O pins for interfacing with the EEPROM. It only provides simple 1-byte read and write commands. It does not currently support sequential reads or writes.
 
@@ -64,7 +64,6 @@ byte read(int address);
 
 The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
 
-<!-- markdown-link-check-disable-next-line -->
 [1]: https://www.st.com/resource/en/datasheet/m24c08-r.pdf
 [5]:https://github.com/Andy4495/SWI2C
 [100]: https://choosealicense.com/licenses/mit/
